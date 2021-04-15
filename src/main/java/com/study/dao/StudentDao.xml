@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace：dao接口的全限定名称-->
+<mapper namespace="com.study.dao.StudentDao">
+    <!--
+    <select id="" resultType="">
+        sql语句
+    </select>
+
+    id:要执行的sql语句的唯一标识，myBatis会根据这个id找到要执行的sql语句，
+        可以自定义，但是推荐使用接口中的方法名
+    resultType:表示结果的类型，是sql语句执行后得到resultSet，遍历这个resultSet得到java对象的类型
+                值写类型的全限定名称
+    -->
+
+    <!-- 查询所有用户信息 --> 
+    <select id="searchStudent" resultType="com.study.domain.Student">
+        select * from student where stuid = #{stuid};
+    </select>
+    <select id="selectAllStudent" resultType="com.study.domain.Student">
+        select * from student
+    </select>
+    <!-- 添加一个用户 ，#{uname}为com.po.MyUser的属性值 -->
+    <insert id="addStudent" parameterType="com.study.domain.Student">
+        insert into student
+        (stuname,stusex,stunum) values(#{stuname},#{stusex},#{stunum})
+    </insert>
+    <!-- 修改一个用户 -->
+    <!--<update id="updateStudent" parameterType="com.study.domain.Student">-->
+        <!--update student set-->
+        <!--stuname = #{stuname},stusex = #{stusex},stunum = #{stunum} where stuid-->
+        <!--= #{stuid}-->
+    <!--</update>-->
+
+    <!--动态sql-->
+    <update id="updateStudent" parameterType="com.study.domain.Student">
+        update student
+        <set>
+            <if test="stuname!=null"> stuname = #{stuname},</if>
+            <if test="stusex!=null" >stusex = #{stusex}</if>
+        </set>
+        where stuid = #{stuid}
+    </update>
+
+    <!-- 删除一个用户 -->
+    <delete id="deleteStudent" parameterType="Integer">
+        delete from student where stuid = #{stuid}
+    </delete>
+</mapper>
+
+
+        <!--1.mapper,当前文件的根标签
+                namespace：命名空间，唯一值，可以是自定义的字符串，推荐使用dao接口的全限定名称（包名+类名）
+            2.在当前文件中可以使用特定标签，表示数据库的特定操作
+                <select>表示执行查询  select语句
+                <update>表示执行更新  update语句
+                <delete>表示执行删除  delete语句
+                <insert>表示执行插入  insert语句-->

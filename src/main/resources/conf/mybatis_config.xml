@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 在使用MyBatis嵌套查询方式进行关联查询时，使用MyBatis的延迟加载在一定程度可以提高查询效率 -->
+    <settings>
+        <!-- 打开延迟加载的开关 -->
+        <setting name="lazyLoadingEnabled" value="true" />
+        <!-- 将积极加载改为按需加载 -->
+        <setting name="aggressiveLazyLoading" value="false" />
+    </settings>
+    <!--setting:控制mybatis的全局行为-->
+    <!--<settings>-->
+        <!--设置myBatis输出日志-->
+        <!--<setting name="logImpl" value="STDOUT_LOGGING"/>-->
+    <!--</settings>-->
+    <!--定义别名-->
+    <typeAliases>
+        <!--可以指定一个类型自定义别名
+            type：自定义类型的全限定名称
+            alias：别名，自己定义-->
+        <!--<typeAlias type="" alias=""/>-->
+        <!--第二种
+            <package> name是包名，这个包中所有类的类名就是他的别名（类名不区分大小写）-->
+
+        <package name="com.study.domain"/>
+    </typeAliases>
+
+
+    <!--setting:控制myBatis全局行为-->
+    <!--<settings>-->
+    <!--设置myBatis输出日志-->
+    <!--<setting name="logImpl" value="STDOUT-LOGGING"/>-->
+    <!--</settings>-->
+
+    <!--sql mapper(sql映射文件)的位置-->
+    <mappers>
+        <!--一个mapper标签，指定一个映射文件的位置
+            从类路径开始的路径信息，   target/classes(类路径)-->
+        <!--<mapper resource=""/>-->
+
+        <!--方法二,或者使用package
+            name：包名，这个包中的所有mapper.xml都能一次加载
+            要求：
+                1.mapper文件名称和dao接口名必须完全一样，包括大小写
+                2.mapper文件和dao接口必须在同一目录-->
+        <package name="com.study.dao"/>
+    </mappers>
+</configuration>
+
+        <!--myBatis的配置文件-->

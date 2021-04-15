@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="javaHigh_MVCAndSql:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="javaHigh_MVCAndSql-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="javaHigh_MVCAndSql:war exploded" />
+    </root>
+  </artifact>
+</component>
